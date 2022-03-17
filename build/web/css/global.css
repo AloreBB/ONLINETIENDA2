@@ -1,0 +1,63 @@
+
+#pie
+{
+    /*
+    min-height: 74px!important;
+    background: #FF336B;
+    margin-bottom: 200px; 
+    */
+    background: #F76A8F;
+    
+}
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: calc(100% - 4rem);
+}
+.footer {
+  height: 4rem;
+  background-color: #F76A8F
+}
+.registro>h1
+{
+    text-align: center;
+    color: #000000;
+}
+
+.registro label
+{
+    color: #33E6FF;
+}
+
+
+.sidebar-col{
+    background-color: #3399ff;
+    color: #3399ff;
+    font-size: 20px;
+    min-height: 100vh;
+    min-width: 5vh;
+    padding: inherit;
+}
+
+.sidebar-col a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    width: 80%;
+    display: block;
+    transition: ls;
+    padding: 8px;
+    margin-left: 20px;
+}
+
+.sidebar-col a:hover{
+    background-color: black;
+}
+
+a {
+    color: black;
+}

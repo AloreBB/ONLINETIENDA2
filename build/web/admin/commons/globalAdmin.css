@@ -1,0 +1,26 @@
+.sidebar-col{
+    background-color: #3399ff;
+    color: #3399ff;
+    font-size: 20px;
+    min-height: 1000vh;
+    padding: inherit;
+}
+
+.sidebar-col a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    width: 80%;
+    display: block;
+    transition: ls;
+    padding: 8px;
+    margin-left: 20px;
+}
+
+.sidebar-col a:hover{
+    background-color: black;
+}
+
+a {
+    color: white;
+}
