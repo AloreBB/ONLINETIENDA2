@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/controlador/ControladorUsu.java</file>
             <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/web/index.jsp</file>
+            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/beans/Carrito.java</file>
             <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/web/carrito.jsp</file>
+            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/DAO/RegistroDAOP.java</file>
             <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/controlador/ControladorCar.java</file>
             <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/web/productos.jsp</file>
         </group>
