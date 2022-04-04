@@ -4,6 +4,9 @@
     Author     : Daniel y Kevin Pc
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="org.apache.jasper.tagplugins.jstl.ForEach"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="beans.Carrito"%>
 <%@page import="beans.RegistroBeansP"%>
 <%@page import="java.util.List"%>
@@ -34,16 +37,18 @@
                         <th>Acción</th>
                     </tr>
                     
-                    
+                    <c:forEach var="car" items="${carrito}">
                     <tr>
+                        <td>${car.getNombres()}</td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        <td></td> 
                     </tr>
+                    </c:forEach>
+                    
                     
                 </table> 
             </div>
