@@ -39,13 +39,21 @@
                     
                     <c:forEach var="car" items="${carrito}">
                     <tr>
+                        <td>${car.getItem()}</td>
                         <td>${car.getNombres()}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td> 
+                        <td>${car.getDescripcion()}</td>
+                        <td>${car.getPrecioCompra()}</td>
+                        <td> 
+                            <input type="number" id="Cantidad" value="${car.getCantidad()}" class="form-control text-center" min="1">
+                            <input type="hidden" id="idPro" value="${car.getIdProducto()}">
+                        </td>
+                        <td>${car.getSubTotal()}</td>
+                        <td>
+                            <input type="hidden" id="idp" value="${car.getIdProducto()}">
+                            <a href="#" id="btnDelete">Eliminar</a>
+
+                            <!-- href="ControladorCar?action=Delete&idp=${car.getIdProducto()}"-->
+                        </td> 
                     </tr>
                     </c:forEach>
                     
@@ -60,8 +68,8 @@
                             <h3>Compra</h3>
                         </div>
                         <div class="card-body">
-                            <label>Subtotal<i class="fas fa-cart-plus">(<label style="color: fuchsia">${contador}</label>)</i></label>
-                            <input type="text" readonly="" class="form-control">
+                            <label>Subtotal</label>
+                            <input type="text" value="${totalPagar}" readonly="" class="form-control">
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-info btn-block">Realizar pago</a>
@@ -77,4 +85,5 @@
 
 
     </body>
+    <script src="js/funciones.js" type="text/javascript"></script>
 </html>

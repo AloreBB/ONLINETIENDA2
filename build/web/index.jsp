@@ -71,7 +71,7 @@
                   <h5 class="card-title"><%= recorreg.getNombre()%></h5>
                   <p class="card-text"><p><%= recorreg.getDescripcion()%></p>
                   <a class="btn-outline-info" href="ControladorCar?action=AgregarCarrito&id=<%= recorreg.getId()%>">Agregar al Carrito</a>
-                  <a href="#" class="btn btn-primary">Comprar ahora</a>
+                  <a href="ControladorCar?action=Comprar&id=<%= recorreg.getId()%>" class="btn btn-primary">Comprar ahora</a>
                 </div>
             </div>
             <br>

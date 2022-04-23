@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.view.Location;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -59,6 +60,7 @@ public class ControladorCar extends HttpServlet {
         switch(action){
             
             case "Comprar":
+                totalPagar = 0.0;
                 int idP = Integer.parseInt(request.getParameter("id"));
                 beansP = rDAOP.listarId(idP);
                 item=+1;
@@ -68,29 +70,65 @@ public class ControladorCar extends HttpServlet {
                 car.setNombres(beansP.getNombre());
                 car.setDescripcion(beansP.getDescripcion());
                 car.setPrecioCompra(beansP.getCosto());
-                car.setCantidad(beansP.getCantidad());
+                car.setCantidad(cantidad);
                 car.setSubTotal(cantidad*beansP.getCosto());
                 listaCarrito.add(car);
                 
-                
+                for (int i = 0; i < listaCarrito.size(); i++) {
+                    totalPagar = totalPagar +listaCarrito.get(i).getSubTotal();
+                }
+                request.setAttribute("totalPagar", totalPagar);
+                request.setAttribute("carrito", listaCarrito);
                 request.setAttribute("contador", listaCarrito.size());
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("carrito.jsp").forward(request, response);
                 
                 break;
             
             case "AgregarCarrito":
+                int pos = 0;
+                cantidad = 1;
                 idP = Integer.parseInt(request.getParameter("id"));
                 beansP = rDAOP.listarId(idP);
-                item=+1;
-                car = new Carrito();
-                car.setItem(item);
-                car.setIdProducto(beansP.getId());
-                car.setNombres(beansP.getNombre());
-                car.setDescripcion(beansP.getDescripcion());
-                car.setPrecioCompra(beansP.getCosto());
-                car.setCantidad(beansP.getCantidad());
-                car.setSubTotal(cantidad*beansP.getCosto());
-                listaCarrito.add(car);
+                if (listaCarrito.size()>0) {
+                    
+                    for (int i = 0; i < listaCarrito.size(); i++) {
+                        if (idP == listaCarrito.get(i).getIdProducto()) {
+                            pos=i;
+                        }
+                    }
+                    // Dentro de este if se hace la suma del total en productos agregados. Siendo el mismo producto
+                    if (idP == listaCarrito.get(pos).getIdProducto()) {
+                        cantidad = listaCarrito.get(pos).getCantidad()+cantidad;
+                        double subTotal = listaCarrito.get(pos).getPrecioCompra()*cantidad; 
+                        listaCarrito.get(pos).setCantidad(cantidad);
+                        listaCarrito.get(pos).setSubTotal(subTotal);
+                    }
+                    else{
+                        item = item +1;
+                        car = new Carrito();
+                        car.setItem(item);
+                        car.setIdProducto(beansP.getId());
+                        car.setNombres(beansP.getNombre());
+                        car.setDescripcion(beansP.getDescripcion());
+                        car.setPrecioCompra(beansP.getCosto());
+                        car.setCantidad(cantidad);
+                        car.setSubTotal(cantidad*beansP.getCosto());
+                        listaCarrito.add(car);
+                    }
+                
+                }
+                else {
+                    item+=1;
+                    car = new Carrito();
+                    car.setItem(item);
+                    car.setIdProducto(beansP.getId());
+                    car.setNombres(beansP.getNombre());
+                    car.setDescripcion(beansP.getDescripcion());
+                    car.setPrecioCompra(beansP.getCosto());
+                    car.setCantidad(cantidad);
+                    car.setSubTotal(cantidad*beansP.getCosto());
+                    listaCarrito.add(car);
+                }
                 
                 
                 request.setAttribute("contador", listaCarrito.size());
@@ -101,7 +139,35 @@ public class ControladorCar extends HttpServlet {
             case "Carrito":
                 totalPagar=0.0;
                 request.setAttribute("carrito", listaCarrito);
+                for (int i = 0; i < listaCarrito.size(); i++) {
+                    totalPagar = totalPagar +listaCarrito.get(i).getSubTotal();
+                }
+                request.setAttribute("totalPagar", totalPagar);
                 request.getRequestDispatcher("carrito.jsp").forward(request, response);
+                break;
+                
+            case "Delete":
+                int idproducto = Integer.parseInt(request.getParameter("idp"));
+                for (int i = 0; i < listaCarrito.size(); i++) {
+                    if (listaCarrito.get(i).getIdProducto()==idproducto) {
+                        listaCarrito.remove(i);
+                    }
+                }
+                // volvemos a cargar la lista de productos
+                
+                break;
+                
+            case "ActualizarCantidad":
+                int idpro = Integer.parseInt(request.getParameter("idp"));
+                int cant = Integer.parseInt(request.getParameter("Cantidad"));
+                for (int i = 0; i < listaCarrito.size(); i++) {
+                    if (listaCarrito.get(i).getIdProducto() == idpro) {
+                        listaCarrito.get(i).setCantidad(cant);
+                        double st = listaCarrito.get(i).getPrecioCompra()*cant;
+                        listaCarrito.get(i).setSubTotal(st);
+                    }
+                }
+                
                 break;
                 
             default:

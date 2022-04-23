@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/controlador/ControladorUsu.java</file>
-            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/web/index.jsp</file>
-            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/beans/Carrito.java</file>
-            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/web/carrito.jsp</file>
-            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/DAO/RegistroDAOP.java</file>
-            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/src/java/controlador/ControladorCar.java</file>
-            <file>file:/C:/Users/Alore/Documents/NetBeansProjects/ONLINETIENDA/web/productos.jsp</file>
+            <file>file:/C:/Users/Alore/Documents/ONLINETIENDA/web/commons/cdn.jsp</file>
+            <file>file:/C:/Users/Alore/Documents/ONLINETIENDA/src/java/controlador/ControladorCar.java</file>
+            <file>file:/C:/Users/Alore/Documents/ONLINETIENDA/web/index.jsp</file>
+            <file>file:/C:/Users/Alore/Documents/ONLINETIENDA/web/js/funciones.js</file>
+            <file>file:/C:/Users/Alore/Documents/ONLINETIENDA/web/carrito.jsp</file>
         </group>
     </open-files>
 </project-private>
