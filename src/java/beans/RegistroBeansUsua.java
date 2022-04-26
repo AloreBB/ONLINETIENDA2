@@ -17,18 +17,27 @@ public class RegistroBeansUsua {
     private String correo;
     private String pass;
     private String rol;
-    
+    private String direccion;
     public RegistroBeansUsua(){
         
     }
-    public RegistroBeansUsua( String nombres, String contacto, String correo, String pass) {
+
+    public RegistroBeansUsua( String nombres, String contacto, String correo, String pass, String direccion) {
         
         
         this.nombres = nombres;
         this.contacto = contacto;
         this.correo = correo;
         this.pass = pass;
+        this.direccion = direccion;
+    }
 
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getDireccion() {
+        return direccion;
     }
 
     public int getId() {

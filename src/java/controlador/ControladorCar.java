@@ -5,9 +5,15 @@
  */
 package controlador;
 
+import DAO.CompraDAO;
 import DAO.RegistroDAOP;
+import DAO.RegistroDAOUsua;
 import beans.Carrito;
+import beans.Compra;
+import beans.Pago;
 import beans.RegistroBeansP;
+import beans.RegistroBeansUsua;
+import conexionBD.Fecha;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -27,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControladorCar extends HttpServlet {
     RegistroBeansP beansP = new RegistroBeansP();
+    RegistroBeansUsua beansUsu = new RegistroBeansUsua();
     RegistroDAOP rDAOP = new RegistroDAOP();
     List<Carrito> listaCarrito = new ArrayList<>();
     
@@ -40,6 +47,7 @@ public class ControladorCar extends HttpServlet {
     int idP =0;
     Carrito car;
     
+    int pos = 0;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,9 +68,12 @@ public class ControladorCar extends HttpServlet {
         switch(action){
             
             case "Comprar":
+                pos = 0;
                 totalPagar = 0.0;
+                cantidad = 1;
                 int idP = Integer.parseInt(request.getParameter("id"));
                 beansP = rDAOP.listarId(idP);
+                /*
                 item=+1;
                 Carrito car = new Carrito();
                 car.setItem(item);
@@ -73,7 +84,47 @@ public class ControladorCar extends HttpServlet {
                 car.setCantidad(cantidad);
                 car.setSubTotal(cantidad*beansP.getCosto());
                 listaCarrito.add(car);
+                */
+                if (listaCarrito.size()>0) {
+                    
+                    for (int i = 0; i < listaCarrito.size(); i++) {
+                        if (idP == listaCarrito.get(i).getIdProducto()) {
+                            pos=i;
+                        }
+                    }
+                    // Dentro de este if se hace la suma del total en productos agregados. Siendo el mismo producto
+                    if (idP == listaCarrito.get(pos).getIdProducto()) {
+                        cantidad = listaCarrito.get(pos).getCantidad()+cantidad;
+                        double subTotal = listaCarrito.get(pos).getPrecioCompra()*cantidad; 
+                        listaCarrito.get(pos).setCantidad(cantidad);
+                        listaCarrito.get(pos).setSubTotal(subTotal);
+                    }
+                    else{
+                        item = item +1;
+                        car = new Carrito();
+                        car.setItem(item);
+                        car.setIdProducto(beansP.getId());
+                        car.setNombres(beansP.getNombre());
+                        car.setDescripcion(beansP.getDescripcion());
+                        car.setPrecioCompra(beansP.getCosto());
+                        car.setCantidad(cantidad);
+                        car.setSubTotal(cantidad*beansP.getCosto());
+                        listaCarrito.add(car);
+                    }
                 
+                }
+                else {
+                    item+=1;
+                    car = new Carrito();
+                    car.setItem(item);
+                    car.setIdProducto(beansP.getId());
+                    car.setNombres(beansP.getNombre());
+                    car.setDescripcion(beansP.getDescripcion());
+                    car.setPrecioCompra(beansP.getCosto());
+                    car.setCantidad(cantidad);
+                    car.setSubTotal(cantidad*beansP.getCosto());
+                    listaCarrito.add(car);
+                }
                 for (int i = 0; i < listaCarrito.size(); i++) {
                     totalPagar = totalPagar +listaCarrito.get(i).getSubTotal();
                 }
@@ -85,7 +136,7 @@ public class ControladorCar extends HttpServlet {
                 break;
             
             case "AgregarCarrito":
-                int pos = 0;
+                pos = 0;
                 cantidad = 1;
                 idP = Integer.parseInt(request.getParameter("id"));
                 beansP = rDAOP.listarId(idP);
@@ -169,7 +220,23 @@ public class ControladorCar extends HttpServlet {
                 }
                 
                 break;
+            
+            case "GenerarCompra":
+                RegistroBeansUsua cliente = new RegistroBeansUsua();
                 
+                //Pago pago = new Pago();
+                CompraDAO dao = new CompraDAO();
+                Compra compra = new Compra(beansUsu, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
+                int res = dao.GenerarCompra(compra);
+                //Si la sentencia se cumple se realiza el proceso de compra
+                if (res != 0 && totalPagar > 0) {
+                    request.getRequestDispatcher("vistas/mensaje.jsp").forward(request, response);
+                }
+                else {
+                    request.getRequestDispatcher("vistas/mensaje.jsp").forward(request, response);
+                }
+                
+                break;
             default:
                     
         }
