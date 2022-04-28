@@ -56,16 +56,16 @@ public class ControladorP extends HttpServlet {
 
                     //idPro = Integer.parseInt(request.getParameter("id"));
                     
-                    if (request.getParameter("txtNom").toString().length()>0 && request.getParameter("txtCost").toString().length()>0 
-                    && request.getParameter("txtCant").toString().length()>0 && request.getParameter("txtDesc").toString().length()>0
-                    && request.getParameter("txtCat").toString().length()>0) 
+                    if (request.getParameter("txtNom").length()>0 && request.getParameter("txtCost").length()>0 
+                    && request.getParameter("txtCant").length()>0 && request.getParameter("txtDesc").length()>0
+                    && request.getParameter("categoria").length()>0) 
                     {
                     
                     String nombre = request.getParameter("txtNom");
                     float costo = Float.parseFloat(request.getParameter("txtCost"));
                     int cantidad = Integer.parseInt(request.getParameter("txtCant"));
                     String desc = request.getParameter("txtDesc");
-                    int categoria = Integer.parseInt(request.getParameter("txtCat"));
+                    int categoria = Integer.parseInt(request.getParameter("categoria"));
 
                     miRegisB.setNombre(nombre);
                     miRegisB.setCosto(costo);

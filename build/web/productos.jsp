@@ -56,7 +56,7 @@
                             <label>Categoria</label> 
                             <!-- Aqui comienzan los cambios para ver categorias con un
                             selector-->
-                            <select value="${Producto.getCategoria()}" name="categoria" class="form-control">
+                            <select value="${Producto.getId_categoria()}" name="categoria" class="form-control">
                                 <option>Seleccionar</option>
                                 <%
                                     List listaCat = new RegistroDAOCat().getAll();
@@ -66,7 +66,7 @@
                                         RegistroBeansCat cat = (RegistroBeansCat)listC.next();
 
                                 %>
-                                <option value="<%= cat.getId()%>"><%= cat.getNombre()%></option>
+                                <option name="categoria" value="<%= cat.getId()%>"><%= cat.getNombre()%></option>
                                 <%
                                     }
                                 %>
