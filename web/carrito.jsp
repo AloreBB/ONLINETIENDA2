@@ -40,7 +40,9 @@
                     <c:forEach var="car" items="${carrito}">
                     <tr>
                         <td>${car.getItem()}</td>
-                        <td>${car.getNombres()}</td>
+                        <td>${car.getNombres()} 
+                            <img src="ControladorIMG?id=${car.getIdProducto()}" class="card-img-top mx-auto d-block" width="100" height="100">
+                        </td>
                         <td>${car.getDescripcion()}</td>
                         <td>${car.getPrecioCompra()}</td>
                         <td> 

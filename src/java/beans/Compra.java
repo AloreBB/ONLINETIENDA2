@@ -16,7 +16,7 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra( RegistroBeansUsua cliente, int idpago, String fecha, double monto, String estado, List<Carrito> detallecompras) {
+    public Compra(RegistroBeansUsua cliente, int idpago, String fecha, double monto, String estado, List<Carrito> detallecompras) {
         this.cliente = cliente;
         this.idpago = idpago;
         this.fecha = fecha;

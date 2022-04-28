@@ -262,7 +262,7 @@ public class RegistroDAOP {
             ps.setFloat(2, r.getCosto());
             ps.setInt(3, r.getCantidad());
             ps.setString(4, r.getDescripcion());
-            ps.setInt(5, r.getCategoria());
+            ps.setInt(5, r.getId_categoria());
             
             ps.setInt(6, r.getId());
 

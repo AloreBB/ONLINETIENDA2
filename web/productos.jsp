@@ -49,9 +49,8 @@
                             <label>Descripción</label>
                             <input type="text" class="form-control" value="${Producto.getDescripcion()}" name="txtDesc">
                         </div>
-                        
-                        
                     </div>
+                    <div class="form-group d-flex">
                         <div class="col-sm-3">
                             <label>Categoria</label> 
                             <!-- Aqui comienzan los cambios para ver categorias con un
@@ -71,7 +70,17 @@
                                     }
                                 %>
                             </select>
+                            </div>
+                            <div class="col-sm-3">
+                            <label>Imágen</label>
+                            <input type="file" class="form-control" value="${Producto.getDescripcion()}" name="txtDesc">
+                        
                         </div>
+                    </div>
+                        
+                    
+                        
+                        
                         
                     <div>
                         <button type="submit" name="action" value="insertar" class="btn btn-success mt-4 mr-sm-2">
@@ -108,7 +117,9 @@
                         
                         <tr>
                             <td><%= RES.getId() %></td>
-                            <td><%= RES.getNombre() %></td>      
+                            <td><%= RES.getNombre() %> 
+                                <img src="ControladorIMG?id=<%= RES.getId() %>" class="card-img-top mx-auto d-block" width="100" height="100">
+                            </td>      
                             <td><%= RES.getCosto() %></td>
                             <td><%= RES.getCantidad() %></td>
                             <td><%= RES.getDescripcion()%></td>

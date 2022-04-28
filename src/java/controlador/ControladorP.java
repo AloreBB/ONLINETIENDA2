@@ -103,7 +103,7 @@ public class ControladorP extends HttpServlet {
                     float costo2 = Float.parseFloat(request.getParameter("txtCost"));
                     int cantidad2 = Integer.parseInt(request.getParameter("txtCant"));
                     String desc2 = request.getParameter("txtDesc");
-                    int categoria2 = Integer.parseInt(request.getParameter("txtCat"));
+                    int categoria2 = Integer.parseInt(request.getParameter("categoria"));
 
                     miRegisB.setNombre(nombre2);
                     miRegisB.setCosto(costo2);
