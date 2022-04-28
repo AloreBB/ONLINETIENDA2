@@ -128,7 +128,7 @@ public class ValidarLogueo extends HttpServlet {
                     request.getRequestDispatcher("ControladorUsu?menu=Ppal").forward(request, response);
                 }
                 else {
-                    request.getRequestDispatcher("fallido").forward(request, response);
+                    request.getRequestDispatcher("fallido.jsp").forward(request, response);
                 }
                 
             }

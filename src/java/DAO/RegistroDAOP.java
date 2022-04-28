@@ -40,8 +40,8 @@ public class RegistroDAOP {
     //======================================Insertar Producto=========================================================
     public int insertarP(RegistroBeansP r) {
 
-        String sql = "insert into productos(nombre,costo,cantidad,descripcion,id_categoria)"
-               + "values(?,?,?,?,?)";
+        String sql = "insert into productos(nombre,foto,costo,cantidad,descripcion,id_categoria)"
+               + "values(?,?,?,?,?,?)";
               
         try {
             cnx = con.ConexBD();
@@ -49,10 +49,11 @@ public class RegistroDAOP {
             
             //ps.setInt(6, r.getId());
             ps.setString(1, r.getNombre());
-            ps.setFloat(2, r.getCosto());
-            ps.setInt(3, r.getCantidad());
-            ps.setString(4, r.getDescripcion());
-            ps.setInt(5, r.getCategoria());
+            ps.setBlob(2, r.getFoto());
+            ps.setFloat(3, r.getCosto());
+            ps.setInt(4, r.getCantidad());
+            ps.setString(5, r.getDescripcion());
+            ps.setInt(6, r.getId_categoria());
             
             
 

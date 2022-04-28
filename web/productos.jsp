@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-sm-9 main-col">
                     <br>
-                <form action="ControladorP?menu=Producto" method="POST">
+                <form enctype="multipart/form-data" action="ControladorP?menu=Producto" method="POST">
                     <div class="form-group d-flex">
                         
                         <div class="col-sm-3">
@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-sm-3">
                             <label>Imágen</label>
-                            <input type="file" class="form-control" value="${Producto.getDescripcion()}" name="txtDesc">
+                            <input type="file" class="form-control" value="${Producto.getFoto()}" name="imagen">
                         
                         </div>
                     </div>

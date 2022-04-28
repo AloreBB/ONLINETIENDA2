@@ -9,17 +9,21 @@ import DAO.RegistroDAOP;
 
 import beans.RegistroBeansP;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
- * @author patricia
+ * @author 
  */
+@MultipartConfig
 @WebServlet(name = "ControladorP", urlPatterns = {"/ControladorP"})
 public class ControladorP extends HttpServlet {
 
@@ -35,7 +39,9 @@ public class ControladorP extends HttpServlet {
     RegistroBeansP miRegisB = new RegistroBeansP();
     RegistroDAOP miRegisD = new RegistroDAOP();
     int idPro;
-
+    Part foto;
+    InputStream inputStream;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String op = request.getParameter("menu");
@@ -58,16 +64,19 @@ public class ControladorP extends HttpServlet {
                     
                     if (request.getParameter("txtNom").length()>0 && request.getParameter("txtCost").length()>0 
                     && request.getParameter("txtCant").length()>0 && request.getParameter("txtDesc").length()>0
-                    && request.getParameter("categoria").length()>0) 
+                    && request.getParameter("categoria").length()>0 && request.getParameter("imagen").length()>0 ) 
                     {
                     
                     String nombre = request.getParameter("txtNom");
+                    foto = request.getPart("imagen");
                     float costo = Float.parseFloat(request.getParameter("txtCost"));
                     int cantidad = Integer.parseInt(request.getParameter("txtCant"));
                     String desc = request.getParameter("txtDesc");
                     int categoria = Integer.parseInt(request.getParameter("categoria"));
-
+                    inputStream = foto.getInputStream();
+                    
                     miRegisB.setNombre(nombre);
+                    miRegisB.setFoto(inputStream);
                     miRegisB.setCosto(costo);
                     miRegisB.setCantidad(cantidad);
                     miRegisB.setDescripcion(desc);
@@ -100,13 +109,15 @@ public class ControladorP extends HttpServlet {
                     
                     //idPro = Integer.parseInt(request.getParameter("id"));
                     String nombre2 = request.getParameter("txtNom");
+                    foto = request.getPart("imagen");
                     float costo2 = Float.parseFloat(request.getParameter("txtCost"));
                     int cantidad2 = Integer.parseInt(request.getParameter("txtCant"));
                     String desc2 = request.getParameter("txtDesc");
                     int categoria2 = Integer.parseInt(request.getParameter("categoria"));
-
-                    miRegisB.setNombre(nombre2);
+                    inputStream = foto.getInputStream();
+                    
                     miRegisB.setCosto(costo2);
+                    miRegisB.setFoto(inputStream);
                     miRegisB.setCantidad(cantidad2);
                     miRegisB.setDescripcion(desc2);
                     miRegisB.setCategoria(categoria2);
