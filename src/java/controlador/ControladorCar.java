@@ -223,17 +223,17 @@ public class ControladorCar extends HttpServlet {
             
             case "GenerarCompra":
                 RegistroBeansUsua cliente = new RegistroBeansUsua();
-                
+                cliente.setId(1);
                 //Pago pago = new Pago();
                 CompraDAO dao = new CompraDAO();
-                Compra compra = new Compra(beansUsu, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
+                Compra compra = new Compra(cliente, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
                 int res = dao.GenerarCompra(compra);
                 //Si la sentencia se cumple se realiza el proceso de compra
                 if (res != 0 && totalPagar > 0) {
-                    request.getRequestDispatcher("vistas/mensaje.jsp").forward(request, response);
+                    request.getRequestDispatcher("mensaje.jsp").forward(request, response);
                 }
                 else {
-                    request.getRequestDispatcher("vistas/mensaje.jsp").forward(request, response);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
                 
                 break;
