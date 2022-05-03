@@ -64,15 +64,15 @@ public class ControladorP extends HttpServlet {
                     
                     if (request.getParameter("txtNom").length()>0 && request.getParameter("txtCost").length()>0 
                     && request.getParameter("txtCant").length()>0 && request.getParameter("txtDesc").length()>0
-                    && request.getParameter("categoria").length()>0 && request.getParameter("imagen").length()>0 ) 
+                    && request.getParameter("cat").length()>0 && request.getPart("foto").getSize()>0 ) 
                     {
                     
                     String nombre = request.getParameter("txtNom");
-                    foto = request.getPart("imagen");
+                    foto = request.getPart("foto");
                     float costo = Float.parseFloat(request.getParameter("txtCost"));
                     int cantidad = Integer.parseInt(request.getParameter("txtCant"));
                     String desc = request.getParameter("txtDesc");
-                    int categoria = Integer.parseInt(request.getParameter("categoria"));
+                    int cat = Integer.parseInt(request.getParameter("cat"));
                     inputStream = foto.getInputStream();
                     
                     miRegisB.setNombre(nombre);
@@ -80,7 +80,7 @@ public class ControladorP extends HttpServlet {
                     miRegisB.setCosto(costo);
                     miRegisB.setCantidad(cantidad);
                     miRegisB.setDescripcion(desc);
-                    miRegisB.setCategoria(categoria);
+                    miRegisB.setCategoria(cat);
 
                     miRegisD.insertarP(miRegisB);
 
