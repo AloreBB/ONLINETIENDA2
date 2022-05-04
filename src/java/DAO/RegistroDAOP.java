@@ -250,7 +250,7 @@ public class RegistroDAOP {
     
    public int modificar(RegistroBeansP r) {
 
-       String sql = "update productos set nombre = ?, costo = ?, cantidad = ?, descripcion = ?, id_categoria = ?" 
+       String sql = "update productos set nombre = ?, foto = ?, costo = ?, cantidad = ?, descripcion = ?, id_categoria = ?" 
                + " where id = ?";
        //String sql = "insert into productos(nombre,costo,cantidad,id_categoria)"
                // + "value(?,?,?,?)";
@@ -260,12 +260,13 @@ public class RegistroDAOP {
             
             
             ps.setString(1, r.getNombre());
-            ps.setFloat(2, r.getCosto());
-            ps.setInt(3, r.getCantidad());
-            ps.setString(4, r.getDescripcion());
-            ps.setInt(5, r.getId_categoria());
+            ps.setBlob(2, r.getFoto());
+            ps.setFloat(3, r.getCosto());
+            ps.setInt(4, r.getCantidad());
+            ps.setString(5, r.getDescripcion());
+            ps.setInt(6, r.getId_categoria());
             
-            ps.setInt(6, r.getId());
+            ps.setInt(7, r.getId());
 
             ps.executeUpdate();
 

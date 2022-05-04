@@ -109,13 +109,15 @@ public class ControladorP extends HttpServlet {
                     
                     //idPro = Integer.parseInt(request.getParameter("id"));
                     String nombre2 = request.getParameter("txtNom");
-                    foto = request.getPart("imagen");
+                    foto = request.getPart("foto");
                     float costo2 = Float.parseFloat(request.getParameter("txtCost"));
                     int cantidad2 = Integer.parseInt(request.getParameter("txtCant"));
                     String desc2 = request.getParameter("txtDesc");
-                    int categoria2 = Integer.parseInt(request.getParameter("categoria"));
+                    // Se cambio el name en el producto.jsp ya que respondia nulo
+                    int categoria2 = Integer.parseInt(request.getParameter("cat1"));
                     inputStream = foto.getInputStream();
                     
+                    miRegisB.setNombre(nombre2);
                     miRegisB.setCosto(costo2);
                     miRegisB.setFoto(inputStream);
                     miRegisB.setCantidad(cantidad2);
@@ -123,6 +125,7 @@ public class ControladorP extends HttpServlet {
                     miRegisB.setCategoria(categoria2);
                     miRegisB.setId(idPro);
                     
+                    // En el metodo modificar se inserto en la base de datos el campo
                     miRegisD.modificar(miRegisB);   
                     
                     request.getRequestDispatcher("productos.jsp").forward(request, response);
