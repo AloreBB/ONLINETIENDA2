@@ -28,7 +28,9 @@
         -->
         <div class="container mt-4">
             <div class="row">
+                
                 <%
+                    /*Iterador de la lista*/
                     List lista = new RegistroDAOP().getAll();
                     ListIterator list = lista.listIterator();
                     
