@@ -47,7 +47,7 @@
                         </div>
                         
                     </div>
-                        
+                                                
                     <div>
                         <button type="submit" name="action" value="insertar" class="btn btn-success mt-4 mr-sm-2">
                         <a class="fas fa-user-plus">Guardar</a>
@@ -59,16 +59,24 @@
                     
                 </form>
                     <h1>Lista de Usuarios</h1>
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Contacto</th>
-                            <th>Correo</th>
-                            <th>Rol</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                    <!--Filtro para buscar usuario en especifico-->
+                        <input class="form-control" id="myInput" type="text" placeholder="Buscar...">
+                        <br/>
+                    <table class="table table-bordered" >
+                        
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Contacto</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="myTable">
                         <%
                             List rlista = new RegistroDAO().getAll();
                             ListIterator list = rlista.listIterator();
@@ -78,23 +86,34 @@
                             
                         %>
                         
-                        <tr>
-                            <td><%= recorreg.getId() %></td>
-                            <td><%= recorreg.getNombres() %></td>
-                            <td><%= recorreg.getContacto() %></td>
-                            <td><%= recorreg.getCorreo() %></td>
-                            <td><%= recorreg.getRol() %></td>
-                            <td>
-                                <a class="btn btn-warning" href="ControladorAdmin?menu=Admin&action=carga&id=<%=recorreg.getId()%>">Editar</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-danger" href="ControladorAdmin?menu=Admin&action=eliminar&id=<%=recorreg.getId()%>">Eliminar</a>
-                            </td>
-                            <%
-                                }
-                                %>
-                        </tr>
+                            <tr>
+                                <td><%= recorreg.getId() %></td>
+                                <td><%= recorreg.getNombres() %></td>
+                                <td><%= recorreg.getContacto() %></td>
+                                <td><%= recorreg.getCorreo() %></td>
+                                <td><%= recorreg.getRol() %></td>
+                                <td>
+                                    <a class="btn btn-warning" href="ControladorAdmin?menu=Admin&action=carga&id=<%=recorreg.getId()%>">Editar</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" href="ControladorAdmin?menu=Admin&action=eliminar&id=<%=recorreg.getId()%>">Eliminar</a>
+                                </td>
+                                <%
+                                    }
+                                    %>
+                            </tr>
+                        </tbody>
                     </table>
+                        <script>
+                            $(document).ready(function(){
+                                $("#myInput").on("keyup", function (){
+                                    var value = $(this).val().toLowerCase();
+                                    $("#myTable tr").filter(function() {
+                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                    });
+                                });
+                            });
+                        </script>
                 </div>
             </div>
         </div>

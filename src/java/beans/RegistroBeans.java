@@ -17,20 +17,31 @@ public class RegistroBeans {
     private String correo;
     private String pass;
     private String rol;
+    private int estado = 0;
     
     public RegistroBeans(){
         
     }
-    public RegistroBeans( String nombres, String contacto, String correo, String pass) {
+    public RegistroBeans( String nombres, String contacto, String correo, String pass, int estado) {
         
         
         this.nombres = nombres;
         this.contacto = contacto;
         this.correo = correo;
         this.pass = pass;
+        this.estado = estado;
 
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    
     public int getId() {
         return id;
     }

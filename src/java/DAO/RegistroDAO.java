@@ -134,6 +134,7 @@ public class RegistroDAO {
                 miRegistro.setEmail(rs.getString("correo"));
                 miRegistro.setPass(rs.getString("password"));
                 miRegistro.setRol(rs.getString("rol"));
+                miRegistro.setEstado(1);
                 
             }
         } catch (SQLException ex) {

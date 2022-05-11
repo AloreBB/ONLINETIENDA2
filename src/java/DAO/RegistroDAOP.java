@@ -260,6 +260,7 @@ public class RegistroDAOP {
             
             
             ps.setString(1, r.getNombre());
+            // Usar con Null el !=
             ps.setBlob(2, r.getFoto());
             ps.setFloat(3, r.getCosto());
             ps.setInt(4, r.getCantidad());

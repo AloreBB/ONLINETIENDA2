@@ -6,13 +6,16 @@
 package controlador;
 
 import DAO.CompraDAO;
+import DAO.RegistroDAO;
 import DAO.RegistroDAOP;
 import DAO.RegistroDAOUsua;
 import beans.Carrito;
 import beans.Compra;
 import beans.Pago;
+import beans.RegistroBeans;
 import beans.RegistroBeansP;
 import beans.RegistroBeansUsua;
+import static com.oracle.wls.shaded.org.apache.xalan.xsltc.compiler.util.Type.Int;
 import conexionBD.Fecha;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,8 +36,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControladorCar extends HttpServlet {
     RegistroBeansP beansP = new RegistroBeansP();
+    RegistroBeans beansL = new RegistroBeans();
     RegistroBeansUsua beansUsu = new RegistroBeansUsua();
     RegistroDAOP rDAOP = new RegistroDAOP();
+    RegistroDAO daoP = new RegistroDAO();
     List<Carrito> listaCarrito = new ArrayList<>();
     
     List<RegistroBeansP> productos = new ArrayList<>();
@@ -222,19 +227,35 @@ public class ControladorCar extends HttpServlet {
                 break;
             
             case "GenerarCompra":
-                RegistroBeansUsua cliente = new RegistroBeansUsua();
+                
+                String usr = request.getParameter("txtUser");
+                String pass = request.getParameter("txtPass");
+                beansL = daoP.validar(usr, pass);
+                request.getSession(true);
+                if (beansL.getNombres() != null) {
+                    RegistroBeansUsua cliente = new RegistroBeansUsua();
                 cliente.setId(1);
                 //Pago pago = new Pago();
                 CompraDAO dao = new CompraDAO();
                 Compra compra = new Compra(cliente, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
-                int res = dao.GenerarCompra(compra);
-                //Si la sentencia se cumple se realiza el proceso de compra
-                if (res != 0 && totalPagar > 0) {
-                    request.getRequestDispatcher("mensaje.jsp").forward(request, response);
+                
+                    int res = dao.GenerarCompra(compra);
+                    if (res != 0 && totalPagar > 0) {
+                        request.getRequestDispatcher("mensaje.jsp").forward(request, response);
+                    }
+                    else {
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
                 }
                 else {
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                    request.getRequestDispatcher("fallido.jsp").forward(request, response);
                 }
+                
+                
+                
+                
+                //Si la sentencia se cumple se realiza el proceso de compra
+                
                 
                 break;
             default:

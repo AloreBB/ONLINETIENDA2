@@ -61,7 +61,7 @@ public class ControladorUsu extends HttpServlet {
         productos = rDAOP.listar();
         
         if (op.equals("Ppal")) {
-            request.getRequestDispatcher("usuarios.jsp").forward(request,response);
+            request.getRequestDispatcher("index.jsp").forward(request,response);
         }
         
         if (op.equals("Usuario")) {

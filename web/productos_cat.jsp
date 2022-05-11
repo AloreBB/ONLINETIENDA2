@@ -50,8 +50,12 @@
                     
                 </form>
                     <h1>Lista de Productos</h1>
+                    <!--Filtro para buscar usuario en especifico-->
+                        <input class="form-control" id="myInputC" type="text" placeholder="Buscar...">
+                        <br/>
                     <table class="table table-bordered">
-                        <tr>
+                        <thead>
+                            <tr>
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Estado</th>
@@ -59,7 +63,10 @@
                             <th></th>
                             <th></th>
                         </tr>
-                        <%
+                        </thead>
+                        
+                        <tbody id="myTableC">
+                            <%
                             List listaCat = new RegistroDAOCat().getAll();
                             ListIterator listCat = listaCat.listIterator();
                             while(listCat.hasNext())
@@ -83,6 +90,17 @@
                                 }
                                 %>
                         </tr>
+                        </tbody>
+                        <script>
+                            $(document).ready(function(){
+                                $("#myInputC").on("keyup", function (){
+                                    var value = $(this).val().toLowerCase();
+                                    $("#myTableC tr").filter(function() {
+                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                    });
+                                });
+                            });
+                        </script>
                     </table>
                 </div>
             </div>

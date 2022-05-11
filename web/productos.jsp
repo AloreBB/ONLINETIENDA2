@@ -94,8 +94,12 @@
                     
                 </form>
                     <h1>Lista de Productos</h1>
+                    <!--Filtro para buscar usuario en especifico-->
+                        <input class="form-control" id="myInputP" type="text" placeholder="Buscar...">
+                        <br/>
                     <table class="table table-bordered">
-                        <tr>
+                        <thead>
+                            <tr>
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Costo</th>
@@ -106,7 +110,9 @@
                             <th></th>
                             <th></th>
                         </tr>
-                        <%
+                        </thead>
+                        <tbody id="myTableP">
+                            <%
                             List lista = new RegistroDAOP().getAll();
                             ListIterator list = lista.listIterator();
                             while(list.hasNext())
@@ -136,7 +142,19 @@
                                 }
                                 %>
                         </tr>
+                        </tbody>
+                        
                     </table>
+                        <script>
+                            $(document).ready(function(){
+                                $("#myInputP").on("keyup", function (){
+                                    var value = $(this).val().toLowerCase();
+                                    $("#myTableP tr").filter(function() {
+                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                    });
+                                });
+                            });
+                        </script>
                 </div>
             </div>
         </div>
