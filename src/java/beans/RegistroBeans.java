@@ -17,7 +17,7 @@ public class RegistroBeans {
     private String correo;
     private String pass;
     private String rol;
-    private int estado = 1;
+    private int estado = 0;
     
     public RegistroBeans(){
         

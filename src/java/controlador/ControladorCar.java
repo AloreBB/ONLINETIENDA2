@@ -250,14 +250,28 @@ public class ControladorCar extends HttpServlet {
                 }
                 */
                 
-                int estado = Integer.parseInt(request.getParameter("estado"));
+                //int estado = Integer.parseInt(request.getParameter("estado"));
+                //beansL.getEstado();
                 String estadu = request.getParameter("estado");
-                if (estadu.equals("")) {
-                    request.getRequestDispatcher("fallido.jsp").forward(request, response);
+                if (estadu.equals("0")) {
+                     RegistroBeansUsua cliente = new RegistroBeansUsua();
+                    cliente.setId(1);
+                    //Pago pago = new Pago();
+                    CompraDAO dao = new CompraDAO();
+                    Compra compra = new Compra(cliente, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
+
+                        int res = dao.GenerarCompra(compra);
+                        if (res != 0 && totalPagar > 0) {
+                            request.getRequestDispatcher("mensaje.jsp").forward(request, response);
+                        }
+                        else {
+                            request.getRequestDispatcher("error.jsp").forward(request, response);
+                        }
+                    //request.getRequestDispatcher("exito.jsp").forward(request, response);
                 }
                 else{
                     
-                    request.getRequestDispatcher("exito.jsp").forward(request, response);
+                    request.getRequestDispatcher("fallido.jsp").forward(request, response);
                 }
                 
                 
