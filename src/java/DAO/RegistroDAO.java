@@ -73,6 +73,7 @@ public class RegistroDAO {
                 miRB.setEmail(rs.getString(4));
                 miRB.setRol(rs.getString(6));
                 
+                
             }
             
         } catch (SQLException ex) {

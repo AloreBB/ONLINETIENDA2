@@ -75,6 +75,8 @@
                   <a class="btn-outline-info" href="ControladorCar?action=AgregarCarrito&id=<%= recorreg.getId()%>">Agregar al Carrito</a>
                   <a href="ControladorCar?action=Comprar&id=<%= recorreg.getId()%>" class="btn btn-primary">Comprar ahora</a>
                 </div>
+                  <input type="hidden" value="${Usu.getEstado()}" id="estado">
+                  <!--<input type="hidden" id="idE" value="${Usu.getEstado()}">-->
             </div>
             <br>
         </div>

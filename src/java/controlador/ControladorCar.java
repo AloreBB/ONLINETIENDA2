@@ -227,31 +227,38 @@ public class ControladorCar extends HttpServlet {
                 break;
             
             case "GenerarCompra":
+                /*
                 
-                String usr = request.getParameter("txtUser");
-                String pass = request.getParameter("txtPass");
-                beansL = daoP.validar(usr, pass);
-                request.getSession(true);
-                if (beansL.getNombres() != null) {
+                int estado = Integer.parseInt(request.getParameter("status"));
+                if (estado != 0) {
                     RegistroBeansUsua cliente = new RegistroBeansUsua();
-                cliente.setId(1);
-                //Pago pago = new Pago();
-                CompraDAO dao = new CompraDAO();
-                Compra compra = new Compra(cliente, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
-                
-                    int res = dao.GenerarCompra(compra);
-                    if (res != 0 && totalPagar > 0) {
-                        request.getRequestDispatcher("mensaje.jsp").forward(request, response);
-                    }
-                    else {
-                        request.getRequestDispatcher("error.jsp").forward(request, response);
-                    }
+                    cliente.setId(1);
+                    //Pago pago = new Pago();
+                    CompraDAO dao = new CompraDAO();
+                    Compra compra = new Compra(cliente, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
+
+                        int res = dao.GenerarCompra(compra);
+                        if (res != 0 && totalPagar > 0) {
+                            request.getRequestDispatcher("mensaje.jsp").forward(request, response);
+                        }
+                        else {
+                            request.getRequestDispatcher("error.jsp").forward(request, response);
+                        }
                 }
                 else {
                     request.getRequestDispatcher("fallido.jsp").forward(request, response);
                 }
+                */
                 
-                
+                int estado = Integer.parseInt(request.getParameter("estado"));
+                String estadu = request.getParameter("estado");
+                if (estadu.equals("")) {
+                    request.getRequestDispatcher("fallido.jsp").forward(request, response);
+                }
+                else{
+                    
+                    request.getRequestDispatcher("exito.jsp").forward(request, response);
+                }
                 
                 
                 //Si la sentencia se cumple se realiza el proceso de compra

@@ -74,7 +74,7 @@
                             <input type="text" value="${totalPagar}" readonly="" class="form-control">
                         </div>
                         <div class="card-footer">
-                            <a href="ControladorCar?action=GenerarCompra" class="btn btn-info btn-block">Realizar pago</a>
+                            <a href="ControladorCar?action=GenerarCompra&estado=${Usu.getEstado()}" class="btn btn-info btn-block">Realizar pago</a>
                         </div>
                     </div>
                 </div>

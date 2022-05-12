@@ -66,38 +66,6 @@ public class ValidarLogueo extends HttpServlet {
         processRequest(request, response);
         String acc = request.getParameter("accion");
         String op = request.getParameter("menu");
-        
-        
-        //si intentan agregar al carrito
-        if (acc.equals("añadir")){
-            if(miRegis.getNombres() != null){
-                
-                //request.getRequestDispatcher("ControladorAdmin?menu=Ppal").forward(request, response);
-                
-                //request.getRequestDispatcher("usuarios.jsp").forward(request, response);
-                if(miRegis.getRol().equals("admin")) {
-                   //response.sendRedirect("admin.jsp");
-                   request.getSession().setAttribute("admin", miRegis);
-                   request.getRequestDispatcher("ControladorAdmin?menu=Ppal").forward(request, response);
-                }
-                else if (miRegis.getRol().equals("usuario"))
-                {
-                    //response.sendRedirect("usuarios.jsp");
-                    //RegistroBeans o = new RegistroBeans();
-                    request.getSession().setAttribute("Usu", miRegis);
-                    request.getRequestDispatcher("ControladorUsu?menu=Ppal").forward(request, response);
-                }
-                else {
-                    request.getRequestDispatcher("fallido").forward(request, response);
-                }
-                
-            }
-            else 
-                {
-                request.getRequestDispatcher("fallido.jsp").forward(request, response);
-            }
-        }
-        
         //evento cuando presiona boton ingresar
         if (acc.equals("Ingresar")) {
             

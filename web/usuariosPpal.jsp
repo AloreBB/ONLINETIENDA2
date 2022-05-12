@@ -32,6 +32,7 @@
                         
                         <div class="col-sm-3">
                             <label>Nombre:</label>
+                            <input type="hidden" id="idUsu" value="${usuario.getId()}">
                             <input type="text" class="form-control" value="${usuario.getNombres()}"  name="txtNombres">
                         </div>
                         <div class="col-sm-3">
