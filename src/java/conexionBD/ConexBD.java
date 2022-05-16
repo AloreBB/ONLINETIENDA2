@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ConexBD {
     Connection cnx;
     
-    String url="jdbc:mysql://localhost/inventario";
+    String url="jdbc:mysql://localhost/inventarioj";
     String usr="root";
     String pass="";
     

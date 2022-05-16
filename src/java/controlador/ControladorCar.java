@@ -253,7 +253,7 @@ public class ControladorCar extends HttpServlet {
                 //int estado = Integer.parseInt(request.getParameter("estado"));
                 //beansL.getEstado();
                 String estadu = request.getParameter("estado");
-                if (estadu.equals("0")) {
+                if (estadu.equals("1")) {
                      RegistroBeansUsua cliente = new RegistroBeansUsua();
                     cliente.setId(1);
                     //Pago pago = new Pago();
