@@ -15,12 +15,15 @@
         </ul>
     </div>
     <div margin-left="-500vh" class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      <image src="img/usu.png" height="30" width="30">
-    </button> 
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="index.jsp">Logout</a>
-    </div>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <image src="img/usu.png" height="30" width="30">
+        </button> 
+        <div class="dropdown-menu">
+            <form class="form-sign" action="ValidarLogueo" method="POST">
+                <input class="dropdown-item" type="submit" name="accion" value="Salir">
+            </form>
+            
+        </div>
     </div>
 
 </nav>

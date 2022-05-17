@@ -106,10 +106,16 @@ public class ValidarLogueo extends HttpServlet {
             }
             
         }
-        else
+        // Cuando presione logout cerrara sesion por ende el bean se reinicia
+        else if (acc.equals("Salir"))
         {
-            request.getRequestDispatcher("logueo.jsp").forward(request, response);
+            miRegis = new RegistroBeans("", "", "", "", 0);
+            request.getSession().setAttribute("Usu", miRegis);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+        
+        
+        
     }
 
     /**
